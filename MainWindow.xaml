@@ -1,0 +1,73 @@
+﻿<Window x:Class="LinkageHinge.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="553" Width="525" WindowStyle="SingleBorderWindow">
+    <Grid>
+        <Grid Background="#FFF5F5BD">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CanvasBorder" BorderBrush="Black" Margin="10" ClipToBounds="True">
+                <Canvas Name="MyCanvas" SizeChanged="MyCanvas_SizeChanged" Background="#18900764" />
+            </Border>
+
+            <GroupBox Grid.Row="1" Grid.Column="0" Background="#FFC4C46F" BorderThickness="0" Margin="5">
+                <GroupBox  Header="Box dimensions">
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Width"></Label>
+                        <TextBox Name="BoxWidth" Text="{Binding BoxWidth, UpdateSourceTrigger=PropertyChanged}" TextChanged="BoxWidth_TextChanged" />
+                        <Label Content="Bottom Height"></Label>
+                        <TextBox Name="BoxHeight1" Text="{Binding BoxHeight1, UpdateSourceTrigger=PropertyChanged}" TextChanged="BoxHeight1_TextChanged" />
+                        <Label Content="Top Height"></Label>
+                        <TextBox Name="BoxHeight2" Text="{Binding BoxHeight2, UpdateSourceTrigger=PropertyChanged}" TextChanged="BoxHeight2_TextChanged" />
+                    </StackPanel>
+                </GroupBox>
+            </GroupBox>
+
+            <GroupBox Grid.Row="1" Grid.Column="1" Background="#FFC4C46F" BorderThickness="0" Margin="5">
+                <GroupBox Header="Linkage 1">
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Top X"></Label>
+                        <TextBox Name="Linkage1TopX" Text="{Binding Linkage1TopX, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage1TopX_TextChanged" />
+                        <Label Content="Top Y"></Label>
+                        <TextBox Name="Linkage1TopY" Text="{Binding Linkage1TopY, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage1TopY_TextChanged" />
+                        <Label Content="Bottom X"></Label>
+                        <TextBox Name="Linkage1BottomX" Text="{Binding Linkage1BottomX, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage1BottomX_TextChanged" />
+                        <Label Content="Bottom Y"></Label>
+                        <TextBox Name="Linkage1BottomY" Text="{Binding Linkage1BottomY, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage1BottomY_TextChanged" />
+                    </StackPanel>
+                </GroupBox>
+            </GroupBox>
+
+            <GroupBox Grid.Row="1" Grid.Column="2" Background="#FFC4C46F" BorderThickness="0" Margin="5">
+                <GroupBox Header="Linkage 2">
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Top X"></Label>
+                        <TextBox Name="Linkage2TopX" Text="{Binding Linkage2TopX, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage2TopX_TextChanged" />
+                        <Label Content="Top Y"></Label>
+                        <TextBox Name="Linkage2TopY" Text="{Binding Linkage2TopY, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage2TopY_TextChanged" />
+                        <Label Content="Bottom X"></Label>
+                        <TextBox Name="Linkage2BottomX" Text="{Binding Linkage2BottomX, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage2BottomX_TextChanged" />
+                        <Label Content="Bottom Y"></Label>
+                        <TextBox Name="Linkage2BottomY" Text="{Binding Linkage2BottomY, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage2BottomY_TextChanged" />
+                    </StackPanel>
+                </GroupBox>
+            </GroupBox>
+
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <CheckBox Content="Show geometry" Height="16" HorizontalAlignment="Left" Margin="0,12,0,0" Name="GeometryCheckbox" VerticalAlignment="Top" Click="GeometryCheckbox_Click" />
+                <Button Width="85" Content="Animate" Padding="15,5,15,5" Name="AnimateButton" Click="AnimateButton_Click" Margin="5" />
+                <Button Width="85" Content="Reset" Padding="15,5,15,5" Name="ResetButton" Click="ResetButton_Click" Margin="5" />
+                <Button Width="85" Content="5° steps" Padding="15,5,15,5" Name="StepButton" Click="StepButton_Click" Margin="5" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
