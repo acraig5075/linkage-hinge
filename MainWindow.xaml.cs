@@ -26,34 +26,27 @@ namespace LinkageHinge
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Measurements _measurements = new Measurements
-        {
-            BoxWidth = 200,
-            BoxHeight1 = 160,
-            BoxHeight2 = 40,
-
-            Linkage1BottomX = 20,
-            Linkage1BottomY = 110,
-            Linkage1TopX = 50,
-            Linkage1TopY = 180,
-
-            Linkage2BottomX = 75,
-            Linkage2BottomY = 110,
-            Linkage2TopX = 180,
-            Linkage2TopY = 180
-        };
+        private Measurements _measurements = new Measurements();
 
         public MainWindow()
         {
             InitializeComponent();
 
+            this.Top = Properties.Settings.Default.Top;
+            this.Left = Properties.Settings.Default.Left;
+            this.Height = Properties.Settings.Default.Height;
+            this.Width = Properties.Settings.Default.Width;
+            if (Properties.Settings.Default.Maximised)
+                WindowState = WindowState.Maximized;
+
             var assemblyName = Assembly.GetExecutingAssembly().GetName();
             this.Title = assemblyName.Name + 
                 " " + assemblyName.Version.Major +
-                "." + assemblyName.Version.Minor + 
-                "." + assemblyName.Version.Revision;
+                "." + assemblyName.Version.Minor;
 
             CanvasBorder.BorderThickness = new Thickness(1);
+
+            _measurements.FromSettings();
 
             _box = new Box();
             _box.SetSize(_measurements);
@@ -68,16 +61,24 @@ namespace LinkageHinge
             this.DataContext = _measurements;
         }
 
+        private Object thisLock = new Object();
+
         private void Draw()
         {
+            lock(thisLock);
+
             this.Dispatcher.Invoke((Action)(() =>
                 {
                     MyCanvas.Children.Clear();
                     DrawGrid();
                     DrawBox();
                     DrawLinkages();
+
                     if (GeometryCheckbox.IsChecked == true)
                         DrawGeometry();
+
+                    if (BusyAnimating)
+                        _timer.Enabled = true;
                 }));
         }
 
@@ -228,8 +229,10 @@ namespace LinkageHinge
 
         private Box _box;
         private Box.Hinge _hinge;
-        private System.Timers.Timer _timer = new System.Timers.Timer(100);
+        private System.Timers.Timer _timer = new System.Timers.Timer(200);
         private int _angle = 0;
+
+        private bool BusyAnimating { get; set; }
 
 
         private void ResetBox()
@@ -248,26 +251,40 @@ namespace LinkageHinge
 
         private void AnimateButton_Click(object sender, RoutedEventArgs e)
         {
-            ResetBox();
+            if (_timer.Enabled == true)
+            {
+                _timer.Enabled = false;
+                BusyAnimating = false;
+                AnimateButton.Content = "Animate";
+            }
+            else
+            {
+                ResetBox();
+                BusyAnimating = true;
+                AnimateButton.Content = "Stop";
 
-            _timer.Elapsed += new ElapsedEventHandler(HandleTimerElapsed);
-            _timer.AutoReset = true;
-            _timer.Enabled = true;
+                _timer.Elapsed += new ElapsedEventHandler(HandleTimerElapsed);
+                _timer.AutoReset = false;
+                _timer.Enabled = true;
+            }
         }
 
         public void HandleTimerElapsed(object sender, ElapsedEventArgs e)
         {
+            _timer.Stop();
+
             _angle++;
+
             if (_angle >= 360)
             {
-                _timer.Stop();
+                BusyAnimating = false;
                 return;
             }
 
             bool collision = !_box.OpenByAngle(_angle);
             if (collision)
             {
-                _timer.Stop();
+                BusyAnimating = false;
                 return;
             }
 
@@ -297,9 +314,32 @@ namespace LinkageHinge
 
         private void GeometryCheckbox_Click(object sender, RoutedEventArgs e)
         {
-
             if (_timer.Enabled == false)
                 Draw();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                Properties.Settings.Default.Top = RestoreBounds.Top;
+                Properties.Settings.Default.Left = RestoreBounds.Left;
+                Properties.Settings.Default.Height = RestoreBounds.Height;
+                Properties.Settings.Default.Width = RestoreBounds.Width;
+                Properties.Settings.Default.Maximised = true;
+            }
+            else
+            {
+                Properties.Settings.Default.Top = this.Top;
+                Properties.Settings.Default.Left = this.Left;
+                Properties.Settings.Default.Height = this.Height;
+                Properties.Settings.Default.Width = this.Width;
+                Properties.Settings.Default.Maximised = false;
+            }
+
+            _measurements.ToSettings();
+
+            Properties.Settings.Default.Save();
         }
     }
 
@@ -318,6 +358,36 @@ namespace LinkageHinge
         public int Linkage2BottomY { get; set; }
         public int Linkage2TopX { get; set; }
         public int Linkage2TopY { get; set; }
+
+        public void FromSettings()
+        {
+            BoxWidth = Properties.Settings.Default.BoxWidth;
+            BoxHeight1 = Properties.Settings.Default.BoxHeight1;
+            BoxHeight2 = Properties.Settings.Default.BoxHeight2;
+            Linkage1BottomX = Properties.Settings.Default.Linkage1BottomX;
+            Linkage1BottomY = Properties.Settings.Default.Linkage1BottomY;
+            Linkage1TopX = Properties.Settings.Default.Linkage1TopX;
+            Linkage1TopY = Properties.Settings.Default.Linkage1TopY;
+            Linkage2BottomX = Properties.Settings.Default.Linkage2BottomX;
+            Linkage2BottomY = Properties.Settings.Default.Linkage2BottomY;
+            Linkage2TopX = Properties.Settings.Default.Linkage2TopX;
+            Linkage2TopY = Properties.Settings.Default.Linkage2TopY;
+        }
+
+        public void ToSettings()
+        {
+            Properties.Settings.Default.BoxWidth = BoxWidth;
+            Properties.Settings.Default.BoxHeight1 = BoxHeight1;
+            Properties.Settings.Default.BoxHeight2 = BoxHeight2;
+            Properties.Settings.Default.Linkage1BottomX = Linkage1BottomX;
+            Properties.Settings.Default.Linkage1BottomY = Linkage1BottomY;
+            Properties.Settings.Default.Linkage1TopX = Linkage1TopX;
+            Properties.Settings.Default.Linkage1TopY = Linkage1TopY;
+            Properties.Settings.Default.Linkage2BottomX = Linkage2BottomX;
+            Properties.Settings.Default.Linkage2BottomY = Linkage2BottomY;
+            Properties.Settings.Default.Linkage2TopX = Linkage2TopX;
+            Properties.Settings.Default.Linkage2TopY = Linkage2TopY;
+        }
     }
 
 }
