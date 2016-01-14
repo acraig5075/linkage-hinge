@@ -229,15 +229,15 @@ namespace LinkageHinge
 
         private Box _box;
         private Box.Hinge _hinge;
-        private System.Timers.Timer _timer = new System.Timers.Timer(200);
-        private int _angle = 0;
+        private System.Timers.Timer _timer = new System.Timers.Timer(100);
+        private int _angle = 1;
 
         private bool BusyAnimating { get; set; }
 
 
         private void ResetBox()
         {
-            _angle = 0;
+            //_angle = 0;
 
             _box.SetSize(_measurements);
 
@@ -256,6 +256,8 @@ namespace LinkageHinge
                 _timer.Enabled = false;
                 BusyAnimating = false;
                 AnimateButton.Content = "Animate";
+
+                _timer.Close();
             }
             else
             {
@@ -273,7 +275,7 @@ namespace LinkageHinge
         {
             _timer.Stop();
 
-            _angle++;
+            //_angle++;
 
             if (_angle >= 360)
             {
@@ -301,7 +303,7 @@ namespace LinkageHinge
         {
             _timer.Stop();
 
-            _angle += 1;
+            //_angle = 1;
             if (_angle >= 360)
                 return;
 

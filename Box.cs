@@ -67,12 +67,12 @@ namespace LinkageHinge
             bool succeeded = _hinge.OpenByAngle(degrees);
 
             if (succeeded)
-                OpenTopBoxByAngle(degrees);
+                OpenTopBoxByAngle();
 
             return succeeded;
         }
 
-        private void OpenTopBoxByAngle(double degrees)
+        private void OpenTopBoxByAngle()
         {
             var armature = _hinge.GetArmatureVector();
             var x = armature.RotateBy(-_axisAngle);
