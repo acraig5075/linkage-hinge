@@ -77,6 +77,9 @@ namespace LinkageHinge
                     if (GeometryCheckbox.IsChecked == true)
                         DrawGeometry();
 
+                    if (DimensionsCheckbox.IsChecked == true)
+                        DrawDimensions();
+
                     if (BusyAnimating)
                         _timer.Enabled = true;
                 }));
@@ -213,6 +216,131 @@ namespace LinkageHinge
             }
         }
 
+        private void DrawDimensions()
+        {
+            double gap = 15;
+            var origin = new Point { X = MyCanvas.ActualWidth / 2, Y = MyCanvas.ActualHeight / 2 };
+            var start = new Point(origin.X, gap);
+
+            DrawHorizontalDimension(origin, 1 * gap, gap, "W", new Size(_measurements.BoxWidth, _measurements.BoxHeight2));
+            DrawHorizontalDimension(origin, 2 * gap, gap, "E", new Size(_measurements.Linkage2TopX, _measurements.Linkage2TopY));
+            DrawHorizontalDimension(origin, 3 * gap, gap, "A", new Size(_measurements.Linkage1TopX, _measurements.Linkage1TopY));
+            DrawHorizontalDimension(origin, MyCanvas.ActualHeight - 1 * gap, gap, "G", new Size(_measurements.Linkage2BottomX, _measurements.Linkage2BottomY));
+            DrawHorizontalDimension(origin, MyCanvas.ActualHeight - 2 * gap, gap, "C", new Size(_measurements.Linkage1BottomX, _measurements.Linkage1BottomY));
+
+            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 1 * gap, gap, "H1", new Point(_measurements.BoxWidth, +_measurements.BoxHeight1));
+            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 1 * gap, gap, "H2", new Point(_measurements.BoxWidth, -_measurements.BoxHeight2));
+            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 2 * gap, gap, "H", new Point(_measurements.Linkage2BottomX, +_measurements.Linkage2BottomY));
+            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 2 * gap, gap, "F", new Point(_measurements.Linkage2TopX, -_measurements.Linkage2TopY));
+            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 3 * gap, gap, "D", new Point(_measurements.Linkage1BottomX, +_measurements.Linkage1BottomY));
+            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 3 * gap, gap, "B", new Point(_measurements.Linkage1TopX, -_measurements.Linkage1TopY));
+        }
+
+        private void DrawHorizontalDimension(Point p1, double canvasY, double gap, String label, Size p2)
+        {
+            var start = new Point(p1.X, canvasY);
+            var end = new Point(p1.X + p2.Width, canvasY);
+            var text = new Point(p1.X + p2.Width / 2.0, canvasY - gap);
+
+            var dimLine = new Line();
+            dimLine.Stroke = System.Windows.Media.Brushes.Black;
+            dimLine.StrokeThickness = 0.15;
+            dimLine.X1 = start.X;
+            dimLine.Y1 = start.Y;
+            dimLine.X2 = end.X;
+            dimLine.Y2 = end.Y;
+            MyCanvas.Children.Add(dimLine);
+
+            var dimWitness = new Line();
+            dimWitness.Stroke = System.Windows.Media.Brushes.Black;
+            dimWitness.StrokeThickness = 0.15;
+            dimWitness.X1 = end.X;
+            dimWitness.Y1 = end.Y;
+            dimWitness.X2 = end.X;
+            dimWitness.Y2 = MyCanvas.ActualHeight / 2.0;
+            MyCanvas.Children.Add(dimWitness);
+
+            var textBlock = new TextBlock();
+            textBlock.Text = label;
+            textBlock.TextAlignment = TextAlignment.Center;
+            textBlock.VerticalAlignment = VerticalAlignment.Top;
+            Canvas.SetLeft(textBlock, text.X);
+            Canvas.SetTop(textBlock, text.Y);
+            MyCanvas.Children.Add(textBlock);
+
+            var length = gap * 0.75;
+            DrawArrow(start, length, 0.0);
+            DrawArrow(end, length, 180.0);
+        }
+
+        private void DrawVerticalDimension(Point p1, double canvasX, double gap, String label, Point p2)
+        {
+            var start = new Point(canvasX, p1.Y);
+            var end = new Point(canvasX, p1.Y + p2.Y);
+            var text = new Point(canvasX, p1.Y + p2.Y / 2.0 - gap);
+
+            var dimLine = new Line();
+            dimLine.Stroke = System.Windows.Media.Brushes.Black;
+            dimLine.StrokeThickness = 0.15;
+            dimLine.X1 = start.X;
+            dimLine.Y1 = start.Y;
+            dimLine.X2 = end.X;
+            dimLine.Y2 = end.Y;
+            MyCanvas.Children.Add(dimLine);
+
+            var dimWitness = new Line();
+            dimWitness.Stroke = System.Windows.Media.Brushes.Black;
+            dimWitness.StrokeThickness = 0.15;
+            dimWitness.X1 = end.X;
+            dimWitness.Y1 = end.Y;
+            dimWitness.X2 = MyCanvas.ActualWidth / 2.0;
+            dimWitness.Y2 = end.Y;
+            MyCanvas.Children.Add(dimWitness);
+
+            var textBlock = new TextBlock();
+            textBlock.Text = label;
+            textBlock.TextAlignment = TextAlignment.Center;
+            textBlock.VerticalAlignment = VerticalAlignment.Top;
+            Canvas.SetLeft(textBlock, text.X);
+            Canvas.SetTop(textBlock, text.Y);
+            MyCanvas.Children.Add(textBlock);
+
+            var length = gap * 0.75;
+            DrawArrow(start, length, p2.Y < 0 ? 270.0 : 90.0);
+            DrawArrow(end, length, p2.Y < 0 ? 90.0 : 270.0);
+        }
+
+        private void DrawArrow(Point terminal, double length, double degrees)
+        {
+            var p1 = new Point(terminal.X + length, terminal.Y + length / 4.0);
+            var p2 = new Point(terminal.X + length, terminal.Y - length / 4.0);
+
+            Vector v1 = p1 - terminal;
+            Vector v2 = p2 - terminal;
+
+            p1 = terminal + v1.RotateBy(degrees);
+            p2 = terminal + v2.RotateBy(degrees);
+
+            var arrowLine1 = new Line();
+            arrowLine1.Stroke = System.Windows.Media.Brushes.Black;
+            arrowLine1.StrokeThickness = 0.15;
+            arrowLine1.X1 = p1.X;
+            arrowLine1.Y1 = p1.Y;
+            arrowLine1.X2 = terminal.X;
+            arrowLine1.Y2 = terminal.Y;
+            MyCanvas.Children.Add(arrowLine1);
+
+            var arrowLine2 = new Line();
+            arrowLine2.Stroke = System.Windows.Media.Brushes.Black;
+            arrowLine2.StrokeThickness = 0.15;
+            arrowLine2.X1 = p2.X;
+            arrowLine2.Y1 = p2.Y;
+            arrowLine2.X2 = terminal.X;
+            arrowLine2.Y2 = terminal.Y;
+            MyCanvas.Children.Add(arrowLine2);
+
+        }
+
         private void MyCanvas_SizeChanged(object sender, SizeChangedEventArgs e)        { ResetBox(); }
         private void BoxWidth_TextChanged(object sender, TextChangedEventArgs e)        { ResetBox(); }
         private void BoxHeight1_TextChanged(object sender, TextChangedEventArgs e)      { ResetBox(); }
@@ -315,6 +443,12 @@ namespace LinkageHinge
         }
 
         private void GeometryCheckbox_Click(object sender, RoutedEventArgs e)
+        {
+            if (_timer.Enabled == false)
+                Draw();
+        }
+
+        private void DimensionsCheckbox_Click(object sender, RoutedEventArgs e)
         {
             if (_timer.Enabled == false)
                 Draw();

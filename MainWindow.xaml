@@ -22,11 +22,11 @@
             <GroupBox Grid.Row="1" Grid.Column="0" Background="#FFC4C46F" BorderThickness="0" Margin="5">
                 <GroupBox  Header="Box dimensions">
                     <StackPanel Orientation="Vertical">
-                        <Label Content="Width"></Label>
+                        <Label Content="W"></Label>
                         <TextBox Name="BoxWidth" Text="{Binding BoxWidth, UpdateSourceTrigger=PropertyChanged}" TextChanged="BoxWidth_TextChanged" />
-                        <Label Content="Bottom Height"></Label>
+                        <Label Content="H1"></Label>
                         <TextBox Name="BoxHeight1" Text="{Binding BoxHeight1, UpdateSourceTrigger=PropertyChanged}" TextChanged="BoxHeight1_TextChanged" />
-                        <Label Content="Top Height"></Label>
+                        <Label Content="H2"></Label>
                         <TextBox Name="BoxHeight2" Text="{Binding BoxHeight2, UpdateSourceTrigger=PropertyChanged}" TextChanged="BoxHeight2_TextChanged" />
                     </StackPanel>
                 </GroupBox>
@@ -35,13 +35,13 @@
             <GroupBox Grid.Row="1" Grid.Column="1" Background="#FFC4C46F" BorderThickness="0" Margin="5">
                 <GroupBox Header="Linkage 1">
                     <StackPanel Orientation="Vertical">
-                        <Label Content="Top X"></Label>
+                        <Label Content="A"></Label>
                         <TextBox Name="Linkage1TopX" Text="{Binding Linkage1TopX, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage1TopX_TextChanged" />
-                        <Label Content="Top Y"></Label>
+                        <Label Content="B"></Label>
                         <TextBox Name="Linkage1TopY" Text="{Binding Linkage1TopY, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage1TopY_TextChanged" />
-                        <Label Content="Bottom X"></Label>
+                        <Label Content="C"></Label>
                         <TextBox Name="Linkage1BottomX" Text="{Binding Linkage1BottomX, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage1BottomX_TextChanged" />
-                        <Label Content="Bottom Y"></Label>
+                        <Label Content="D"></Label>
                         <TextBox Name="Linkage1BottomY" Text="{Binding Linkage1BottomY, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage1BottomY_TextChanged" />
                     </StackPanel>
                 </GroupBox>
@@ -50,20 +50,21 @@
             <GroupBox Grid.Row="1" Grid.Column="2" Background="#FFC4C46F" BorderThickness="0" Margin="5">
                 <GroupBox Header="Linkage 2">
                     <StackPanel Orientation="Vertical">
-                        <Label Content="Top X"></Label>
+                        <Label Content="E"></Label>
                         <TextBox Name="Linkage2TopX" Text="{Binding Linkage2TopX, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage2TopX_TextChanged" />
-                        <Label Content="Top Y"></Label>
+                        <Label Content="F"></Label>
                         <TextBox Name="Linkage2TopY" Text="{Binding Linkage2TopY, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage2TopY_TextChanged" />
-                        <Label Content="Bottom X"></Label>
+                        <Label Content="G"></Label>
                         <TextBox Name="Linkage2BottomX" Text="{Binding Linkage2BottomX, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage2BottomX_TextChanged" />
-                        <Label Content="Bottom Y"></Label>
+                        <Label Content="H"></Label>
                         <TextBox Name="Linkage2BottomY" Text="{Binding Linkage2BottomY, UpdateSourceTrigger=PropertyChanged}" TextChanged="Linkage2BottomY_TextChanged" />
                     </StackPanel>
                 </GroupBox>
             </GroupBox>
 
             <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-                <CheckBox Content="Show geometry" Height="16" HorizontalAlignment="Left" Margin="0,12,0,0" Name="GeometryCheckbox" VerticalAlignment="Top" Click="GeometryCheckbox_Click" />
+                <CheckBox Content="Show geometry" Height="16" HorizontalAlignment="Left" Margin="12,12,0,0" Name="GeometryCheckbox" VerticalAlignment="Top" Click="GeometryCheckbox_Click" />
+                <CheckBox Content="Show dimensions" Height="16" HorizontalAlignment="Left" Margin="12,12,0,0" Name="DimensionsCheckbox" VerticalAlignment="Top" Click="DimensionsCheckbox_Click" IsChecked="True" />
                 <Button Width="85" Content="Animate" Padding="15,5,15,5" Name="AnimateButton" Click="AnimateButton_Click" Margin="5" />
                 <Button Width="85" Content="Reset" Padding="15,5,15,5" Name="ResetButton" Click="ResetButton_Click" Margin="5" />
                 <Button Width="85" Content="5° steps" Padding="15,5,15,5" Name="StepButton" Click="StepButton_Click" Margin="5" />
