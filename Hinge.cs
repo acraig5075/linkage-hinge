@@ -18,6 +18,23 @@ namespace LinkageHinge
             private Linkage _secondaryOpen = new Linkage();
             private double _armature;
 
+            public void SetSize(Measurements m)
+            {
+                double a = m.Linkage1TopX;
+                double b = m.Linkage1TopY;
+                double c = m.Linkage1BottomX;
+                double d = m.Linkage1BottomY;
+                double e = m.Linkage2TopX;
+                double f = m.Linkage2TopY;
+                double g = m.Linkage2BottomX;
+                double h = m.Linkage2BottomY;
+
+                SetPrimaryFixed(    new Point(c,  d));
+                SetPrimaryMovable(  new Point(a, -b));
+                SetSecondaryFixed(  new Point(g,  h));
+                SetSecondaryMovable(new Point(e, -f));
+            }
+
             public void SetPrimaryFixed(Point p)
             {
                 _primary.FixedPivot = p;

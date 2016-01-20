@@ -54,7 +54,7 @@ namespace LinkageHinge
             private double left;
 
             public double Diameter { get { return r + r; } }
-            public Point TopLeft { get { return new Point(x - r, y + r);  } }
+            public Point TopLeft { get { return new Point(x - r, y - r);  } }
 
             public Circle(double cx, double cy, double cr)
             {

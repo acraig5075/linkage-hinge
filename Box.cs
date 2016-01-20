@@ -36,8 +36,8 @@ namespace LinkageHinge
             _topCorners[(int)Corner.TopLeft].X      = 0.0;
             _topCorners[(int)Corner.BottomLeft].Y   = 0.0;
             _topCorners[(int)Corner.BottomRight].Y  = 0.0;
-            _topCorners[(int)Corner.TopRight].Y     = TopHeight;
-            _topCorners[(int)Corner.TopLeft].Y      = TopHeight;
+            _topCorners[(int)Corner.TopRight].Y     = -TopHeight;
+            _topCorners[(int)Corner.TopLeft].Y      = -TopHeight;
 
             var vector = new Vector
             {
@@ -50,7 +50,7 @@ namespace LinkageHinge
             };
 
             _offsetBL.X = m.Linkage1TopX;
-            _offsetBL.Y = m.Linkage1TopY - BottomHeight;
+            _offsetBL.Y = m.Linkage1TopY;
 
             _axisAngle = vector.DegreesTo(xAxis);
 
@@ -85,7 +85,6 @@ namespace LinkageHinge
 
             var primary = _hinge.GetOpenPrimaryMovable();
             var bl = primary.Add(-xOffset).Add(-yOffset);
-            bl.Y -= BottomHeight;
 
             _topCornersOpen[(int)Corner.BottomLeft] = bl;
             _topCornersOpen[(int)Corner.BottomRight] = bl.Add(xAxis);

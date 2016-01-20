@@ -17,14 +17,14 @@ namespace LinkageHinge
 
             public static Point RotateAbout(this Point p, Point origin, double degrees)
             {
-                double x = p.X - origin.X;
-                double y = p.Y - origin.Y;
+                double x =  p.X - origin.X;
+                double y = -p.Y + origin.Y;
                 double radians = degrees * Math.PI / 180.0;
 
                 return new Point
                 {
                     X = origin.X + (Math.Cos(radians) * x - Math.Sin(radians) * y),
-                    Y = origin.Y + (Math.Sin(radians) * x + Math.Cos(radians) * y)
+                    Y = origin.Y - (Math.Sin(radians) * x + Math.Cos(radians) * y)
                 };
             }
 
@@ -49,19 +49,23 @@ namespace LinkageHinge
             public static Vector RotateBy(this Vector v, double degrees)
             {
                 double radians = degrees * Math.PI / 180.0;
-                return new Vector
+                var mirror = new Vector(v.X, -v.Y);
+
+                var rotated = new Vector
                 {
-                    X = v.X * Math.Cos(radians) - v.Y * Math.Sin(radians),
-                    Y = v.X * Math.Sin(radians) + v.Y * Math.Cos(radians)
+                    X = mirror.X * Math.Cos(radians) - mirror.Y * Math.Sin(radians),
+                    Y = mirror.X * Math.Sin(radians) + mirror.Y * Math.Cos(radians)
                 };
+                rotated.Y *= -1.0;
+                return rotated;
             }
 
             public static Vector Perpendicular(this Vector v)
             {
                 return new Vector
                 {
-                    X = -v.Y,
-                    Y =  v.X
+                    X =  v.Y,
+                    Y = -v.X
                 };
             }
 
