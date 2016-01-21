@@ -349,17 +349,19 @@ namespace LinkageHinge
         }
 
         private void MyCanvas_SizeChanged(object sender, SizeChangedEventArgs e)        { ResetBox(); }
-        private void BoxWidth_TextChanged(object sender, TextChangedEventArgs e)        { ResetBox(); }
-        private void BoxHeight1_TextChanged(object sender, TextChangedEventArgs e)      { ResetBox(); }
-        private void BoxHeight2_TextChanged(object sender, TextChangedEventArgs e)      { ResetBox(); }
-        private void Linkage1TopX_TextChanged(object sender, TextChangedEventArgs e)    { ResetBox(); }
-        private void Linkage1TopY_TextChanged(object sender, TextChangedEventArgs e)    { ResetBox(); }
-        private void Linkage1BottomX_TextChanged(object sender, TextChangedEventArgs e) { ResetBox(); }
-        private void Linkage1BottomY_TextChanged(object sender, TextChangedEventArgs e) { ResetBox(); }
-        private void Linkage2TopX_TextChanged(object sender, TextChangedEventArgs e)    { ResetBox(); }
-        private void Linkage2TopY_TextChanged(object sender, TextChangedEventArgs e)    { ResetBox(); }
-        private void Linkage2BottomX_TextChanged(object sender, TextChangedEventArgs e) { ResetBox(); }
-        private void Linkage2BottomY_TextChanged(object sender, TextChangedEventArgs e) { ResetBox(); }
+
+        private void BoxWidth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)        { ResetBox(); }
+        private void BoxHeight1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)      { ResetBox(); }
+        private void BoxHeight2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)      { ResetBox(); }
+        private void Linkage1TopX_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)    { ResetBox(); }
+        private void Linkage1TopY_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)    { ResetBox(); }
+        private void Linkage1BottomX_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e) { ResetBox(); }
+        private void Linkage1BottomY_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e) { ResetBox(); }
+        private void Linkage2TopX_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)    { ResetBox(); }
+        private void Linkage2TopY_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)    { ResetBox(); }
+        private void Linkage2BottomX_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e) { ResetBox(); }
+        private void Linkage2BottomY_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e) { ResetBox(); }
+
 
 
         private Box _box;

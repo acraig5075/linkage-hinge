@@ -15,25 +15,25 @@
       <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="Linkage1BottomY" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">110</Value>
+      <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="Linkage1TopX" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">50</Value>
+      <Value Profile="(Default)">54</Value>
     </Setting>
     <Setting Name="Linkage1TopY" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">180</Value>
+      <Value Profile="(Default)">15</Value>
     </Setting>
     <Setting Name="Linkage2BottomX" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">75</Value>
+      <Value Profile="(Default)">55</Value>
     </Setting>
     <Setting Name="Linkage2BottomY" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">110</Value>
+      <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="Linkage2TopX" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">180</Value>
+      <Value Profile="(Default)">170</Value>
     </Setting>
     <Setting Name="Linkage2TopY" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">180</Value>
+      <Value Profile="(Default)">25</Value>
     </Setting>
     <Setting Name="Setting" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
