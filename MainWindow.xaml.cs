@@ -374,8 +374,6 @@ namespace LinkageHinge
 
         private void ResetBox()
         {
-            //_angle = 0;
-
             _box.SetSize(_measurements);
             _hinge.SetSize(_measurements);
 
@@ -384,6 +382,8 @@ namespace LinkageHinge
 
         private void AnimateButton_Click(object sender, RoutedEventArgs e)
         {
+            _angle = 1;
+
             if (_timer.Enabled == true)
             {
                 _timer.Enabled = false;
@@ -408,14 +408,6 @@ namespace LinkageHinge
         {
             _timer.Stop();
 
-            //_angle++;
-
-            if (_angle >= 360)
-            {
-                BusyAnimating = false;
-                return;
-            }
-
             bool collision = !_box.OpenByAngle(_angle);
             if (collision)
             {
@@ -436,9 +428,7 @@ namespace LinkageHinge
         {
             _timer.Stop();
 
-            //_angle = 1;
-            if (_angle >= 360)
-                return;
+            _angle = 5;
 
             bool collision = !_box.OpenByAngle(_angle);
             if (collision)
