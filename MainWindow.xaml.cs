@@ -20,6 +20,7 @@ using System.Reflection;
 namespace LinkageHinge
 {
     using CustomExtensions;
+    using System.Globalization;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -236,12 +237,12 @@ namespace LinkageHinge
             DrawHorizontalDimension(origin, MyCanvas.ActualHeight - 1 * gap, gap, "G", new Point(g, h));
             DrawHorizontalDimension(origin, MyCanvas.ActualHeight - 2 * gap, gap, "C", new Point(c, d));
 
-            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 1 * gap, gap, "H1", new Point(m.BoxWidth,  m.BoxHeight1));
-            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 1 * gap, gap, "H2", new Point(m.BoxWidth, -m.BoxHeight2));
-            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 2 * gap, gap, "H", new Point(g,  h));
-            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 2 * gap, gap, "F", new Point(e, -f));
-            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 3 * gap, gap, "D", new Point(c,  d));
-            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 3 * gap, gap, "B", new Point(a, -b));
+            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 2 * gap, gap, "H1", new Point(m.BoxWidth,  m.BoxHeight1));
+            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 2 * gap, gap, "H2", new Point(m.BoxWidth, -m.BoxHeight2));
+            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 4 * gap, gap, "H", new Point(g,  h));
+            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 4 * gap, gap, "F", new Point(e, -f));
+            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 6 * gap, gap, "D", new Point(c,  d));
+            DrawVerticalDimension(origin, MyCanvas.ActualWidth - 6 * gap, gap, "B", new Point(a, -b));
         }
 
         private void DrawHorizontalDimension(Point p1, double canvasY, double gap, String label, Point p2)
@@ -269,11 +270,14 @@ namespace LinkageHinge
             dimWitness.Y2 = origin.Y + p2.Y;
             MyCanvas.Children.Add(dimWitness);
 
+            FormattedText ft = new FormattedText(label, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 12, System.Windows.Media.Brushes.Black);
+
             var textBlock = new TextBlock();
             textBlock.Text = label;
+            //textBlock.Height = 12;
             textBlock.TextAlignment = TextAlignment.Center;
             textBlock.VerticalAlignment = VerticalAlignment.Top;
-            Canvas.SetLeft(textBlock, text.X);
+            Canvas.SetLeft(textBlock, text.X - ft.Width / 2);
             Canvas.SetTop(textBlock, text.Y);
             MyCanvas.Children.Add(textBlock);
 
@@ -307,12 +311,15 @@ namespace LinkageHinge
             dimWitness.Y2 = end.Y;
             MyCanvas.Children.Add(dimWitness);
 
+            FormattedText ft = new FormattedText(label, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Arial"), 12, System.Windows.Media.Brushes.Black);
+
             var textBlock = new TextBlock();
             textBlock.Text = label;
-            textBlock.TextAlignment = TextAlignment.Center;
+            //textBlock.Height = 12;
+            //textBlock.TextAlignment = TextAlignment.Center;
             textBlock.VerticalAlignment = VerticalAlignment.Top;
-            Canvas.SetLeft(textBlock, text.X);
-            Canvas.SetTop(textBlock, text.Y);
+            Canvas.SetLeft(textBlock, text.X + gap / 4);
+            Canvas.SetTop(textBlock, text.Y + ft.Height / 2);
             MyCanvas.Children.Add(textBlock);
 
             var length = gap * 0.75;
