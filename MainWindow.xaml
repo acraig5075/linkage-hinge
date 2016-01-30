@@ -22,44 +22,88 @@
 
             <GroupBox Grid.Row="1" Grid.Column="0" Background="#FFC4C46F" BorderThickness="0" Margin="5">
                 <GroupBox  Header="Box dimensions">
-                    <StackPanel Orientation="Vertical">
-                        <Label Content="W" />
-                        <xctk:IntegerUpDown x:Name="BoxWidth" Value="{Binding BoxWidth, UpdateSourceTrigger=PropertyChanged}" ValueChanged="BoxWidth_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Margin="0,0,0,0"/>
-                        <Label Content="H1" />
-                        <xctk:IntegerUpDown x:Name="BoxHeight1" Value="{Binding BoxHeight1, UpdateSourceTrigger=PropertyChanged}" ValueChanged="BoxHeight1_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Margin="0,0,0,0"/>
-                        <Label Content="H2" />
-                        <xctk:IntegerUpDown x:Name="BoxHeight2" Value="{Binding BoxHeight2, UpdateSourceTrigger=PropertyChanged}" ValueChanged="BoxHeight2_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Margin="0,0,0,0"/>
-                    </StackPanel>
+                    <Grid Margin="4" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type xctk:IntegerUpDown}">
+                                <Setter Property="Margin" Value="0,3,0,3" />
+                            </Style>
+                        </Grid.Resources>
+                        <Label Content="W" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" />
+                        <xctk:IntegerUpDown x:Name="BoxWidth" Value="{Binding BoxWidth, UpdateSourceTrigger=PropertyChanged}" ValueChanged="BoxWidth_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Grid.Column="1" Grid.Row="0" Height="23"/>
+                        <Label Content="H1" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" />
+                        <xctk:IntegerUpDown x:Name="BoxHeight1" Value="{Binding BoxHeight1, UpdateSourceTrigger=PropertyChanged}" ValueChanged="BoxHeight1_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Grid.Column="1" Grid.Row="1" Height="23"/>
+                        <Label Content="H2" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" />
+                        <xctk:IntegerUpDown x:Name="BoxHeight2" Value="{Binding BoxHeight2, UpdateSourceTrigger=PropertyChanged}" ValueChanged="BoxHeight2_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Grid.Column="1" Grid.Row="2" Height="23"/>
+                    </Grid>
                 </GroupBox>
             </GroupBox>
 
             <GroupBox Grid.Row="1" Grid.Column="1" Background="#FFC4C46F" BorderThickness="0" Margin="5">
                 <GroupBox Header="Linkage 1">
-                    <StackPanel Orientation="Vertical">
-                        <Label Content="A"/>
-                        <xctk:IntegerUpDown x:Name="Linkage1TopX" Value="{Binding Linkage1TopX, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage1TopX_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Margin="0,0,0,0"/>
-                        <Label Content="B"/>
-                        <xctk:IntegerUpDown x:Name="Linkage1TopY" Value="{Binding Linkage1TopY, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage1TopY_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Margin="0,0,0,0"/>
-                        <Label Content="C"/>
-                        <xctk:IntegerUpDown x:Name="Linkage1BottomX" Value="{Binding Linkage1BottomX, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage1BottomX_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Margin="0,0,0,0"/>
-                        <Label Content="D"/>
-                        <xctk:IntegerUpDown x:Name="Linkage1BottomY" Value="{Binding Linkage1BottomY, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage1BottomY_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Margin="0,0,0,0"/>
-                    </StackPanel>
+                    <Grid Margin="4" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type xctk:IntegerUpDown}">
+                                <Setter Property="Margin" Value="0,3,0,3" />
+                            </Style>
+                        </Grid.Resources>
+                        <Label Content="A" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="0" x:Name="Linkage1TopX" Value="{Binding Linkage1TopX, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage1TopX_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Height="23"/>
+                        <Label Content="B" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="1" x:Name="Linkage1TopY" Value="{Binding Linkage1TopY, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage1TopY_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Height="23"/>
+                        <Label Content="C" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="2" x:Name="Linkage1BottomX" Value="{Binding Linkage1BottomX, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage1BottomX_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Height="23"/>
+                        <Label Content="D" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"/>
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="3" x:Name="Linkage1BottomY" Value="{Binding Linkage1BottomY, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage1BottomY_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Height="23"/>
+                    </Grid>
                 </GroupBox>
             </GroupBox>
 
             <GroupBox Grid.Row="1" Grid.Column="2" Background="#FFC4C46F" BorderThickness="0" Margin="5">
                 <GroupBox Header="Linkage 2">
-                    <StackPanel Orientation="Vertical">
-                        <Label Content="E"/>
-                        <xctk:IntegerUpDown x:Name="Linkage2TopX" Value="{Binding Linkage2TopX, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage2TopX_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Margin="0,0,0,0"/>
-                        <Label Content="F"/>
-                        <xctk:IntegerUpDown x:Name="Linkage2TopY" Value="{Binding Linkage2TopY, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage2TopY_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Margin="0,0,0,0"/>
-                        <Label Content="G"/>
-                        <xctk:IntegerUpDown x:Name="Linkage2BottomX" Value="{Binding Linkage2BottomX, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage2BottomX_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Margin="0,0,0,0"/>
-                        <Label Content="H"/>
-                        <xctk:IntegerUpDown x:Name="Linkage2BottomY" Value="{Binding Linkage2BottomY, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage2BottomY_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Margin="0,0,0,0"/>
-                    </StackPanel>
+                    <Grid Margin="4" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type xctk:IntegerUpDown}">
+                                <Setter Property="Margin" Value="0,3,0,3" />
+                            </Style>
+                        </Grid.Resources>
+                        <Label Content="E" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
+                        <xctk:IntegerUpDown x:Name="Linkage2TopX" Value="{Binding Linkage2TopX, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage2TopX_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Grid.Column="1" Grid.Row="0" Height="23"/>
+                        <Label Content="F" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
+                        <xctk:IntegerUpDown x:Name="Linkage2TopY" Value="{Binding Linkage2TopY, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage2TopY_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0"  Grid.Column="1" Grid.Row="1" Height="23"/>
+                        <Label Content="G" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
+                        <xctk:IntegerUpDown x:Name="Linkage2BottomX" Value="{Binding Linkage2BottomX, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage2BottomX_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0"  Grid.Column="1" Grid.Row="2" Height="23"/>
+                        <Label Content="H" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"/>
+                        <xctk:IntegerUpDown x:Name="Linkage2BottomY" Value="{Binding Linkage2BottomY, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage2BottomY_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0"  Grid.Column="1" Grid.Row="3" Height="23"/>
+                    </Grid>
                 </GroupBox>
             </GroupBox>
 
