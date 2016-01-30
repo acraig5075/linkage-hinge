@@ -385,6 +385,16 @@ namespace LinkageHinge
             _hinge.SetSize(_measurements);
 
             Draw();
+
+            UpdateLengthEdits();
+        }
+
+        private void UpdateLengthEdits()
+        {
+            double radius1 = _hinge.GetPrimaryFixed().DistanceTo(_hinge.GetOpenPrimaryMovable());
+            double radius2 = _hinge.GetSecondaryFixed().DistanceTo(_hinge.GetOpenSecondaryMovable());
+            Linkage1Length.Text = radius1.ToString("0.0");
+            Linkage2Length.Text = radius2.ToString("0.0");
         }
 
         private void AnimateButton_Click(object sender, RoutedEventArgs e)

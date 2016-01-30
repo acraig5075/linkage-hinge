@@ -24,7 +24,7 @@
                 <GroupBox  Header="Box dimensions">
                     <Grid Margin="4" VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="50"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -51,10 +51,11 @@
                 <GroupBox Header="Linkage 1">
                     <Grid Margin="4" VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="50"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -73,6 +74,8 @@
                         <xctk:IntegerUpDown Grid.Column="1" Grid.Row="2" x:Name="Linkage1BottomX" Value="{Binding Linkage1BottomX, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage1BottomX_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Height="23"/>
                         <Label Content="D" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"/>
                         <xctk:IntegerUpDown Grid.Column="1" Grid.Row="3" x:Name="Linkage1BottomY" Value="{Binding Linkage1BottomY, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage1BottomY_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0" Height="23"/>
+                        <Label Content="Length" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1" Grid.Row="4" Name="Linkage1Length" IsReadOnly="True" Background="LightGray" BorderBrush="Gray" Height="23" Margin="0,3,0,3"/>
                     </Grid>
                 </GroupBox>
             </GroupBox>
@@ -81,10 +84,11 @@
                 <GroupBox Header="Linkage 2">
                     <Grid Margin="4" VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="50"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -103,6 +107,8 @@
                         <xctk:IntegerUpDown x:Name="Linkage2BottomX" Value="{Binding Linkage2BottomX, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage2BottomX_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0"  Grid.Column="1" Grid.Row="2" Height="23"/>
                         <Label Content="H" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"/>
                         <xctk:IntegerUpDown x:Name="Linkage2BottomY" Value="{Binding Linkage2BottomY, UpdateSourceTrigger=PropertyChanged}" ValueChanged="Linkage2BottomY_ValueChanged" TextAlignment="Left" Increment="1" Maximum="1000" Minimum="0"  Grid.Column="1" Grid.Row="3" Height="23"/>
+                        <Label Content="Length" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1" Grid.Row="4" Name="Linkage2Length" IsReadOnly="True" Background="LightGray" BorderBrush="Gray" Height="23" Margin="0,3,0,3"/>
                     </Grid>
                 </GroupBox>
             </GroupBox>
